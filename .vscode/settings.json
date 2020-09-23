@@ -7,6 +7,15 @@
         "iostream": "cpp",
         "iosfwd": "cpp",
         "ostream": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "filesystem": "cpp",
+        "map": "cpp",
+        "utility": "cpp",
+        "algorithm": "cpp",
+        "memory": "cpp",
+        "deque": "cpp",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "string_view": "cpp"
     }
 }
