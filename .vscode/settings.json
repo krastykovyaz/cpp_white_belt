@@ -16,6 +16,14 @@
         "deque": "cpp",
         "__locale": "cpp",
         "__string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp",
+        "__tree": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "set": "cpp",
+        "unordered_map": "cpp",
+        "bitset": "cpp"
     }
 }
