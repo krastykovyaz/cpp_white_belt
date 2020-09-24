@@ -16,14 +16,30 @@ void print_c_month(const vector <string>& current_month){
 
 
 void if_else_add(vector <string>& current_month, int day, string& task){
+    bool flag = false;
     if (current_month[day] == "0"){
         current_month[day] = task;
     }
     else{
         if (task != "0"){
             current_month[day] = current_month[day] + " " + task;
+            int j = 0;
+            for (int i = 0; i < current_month[day].length(); ++i){
+                    while (current_month[day][i] != ' ')
+                    {
+                        current_month[day][j] = current_month[day][i];
+                        ++i;
+                        ++j;
+                        flag = true;
+                    }
+                    if (flag){
+                        current_month[day][j] = ' ';
+                        ++j;
+                    } 
+                }
+            }
         }
-    }
+    // }
 }
 
 void next (vector <string>& current_month, const vector <int> &month, int &i_month){
