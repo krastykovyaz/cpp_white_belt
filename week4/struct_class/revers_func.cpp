@@ -20,18 +20,47 @@ public:
         value = new_value;
         sign = new_sign;
     }
-    double Apply(double source_value){
- 
-    }
-    Invert(){
-
+    double Apply(double source_value) const {
+      if (sign == '+'){
+        return source_value + value;
+      }
+      else
+      {
+        return source_value - value;
+      }
+    }  
+    void Invert(){
+      if (sign == '+'){
+        sign = '-';
+      }
+      else
+      {
+        sign = '+';
+      }    
     }
 private:
     char sign;
     double value;
 };
 class Function{
-
+public:
+  void AddPart(char sign, double value){
+    parts.push_back({sign, value});
+    }
+    double Apply(double value) const {
+      for (const FunctionPart & part : parts){
+        value = part.Apply(value);
+      }
+      return value;
+    }
+    void Invert(){
+      for (FunctionPart & part : parts){
+        part.Invert();
+      }
+      reverse(parts.begin(), parts.end());
+    }
+private:
+  vector <FunctionPart> parts;
 };
 
 Function MakeWeightFunction(const Params& params,
