@@ -1,0 +1,1 @@
+throw runtime_error("fail");
