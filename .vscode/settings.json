@@ -25,6 +25,7 @@
         "set": "cpp",
         "unordered_map": "cpp",
         "bitset": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "stdexcept": "cpp"
     }
 }

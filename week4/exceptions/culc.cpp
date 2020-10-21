@@ -92,7 +92,6 @@ ostream& operator<<(ostream & os, const Rational & r){
 
 istream& operator>>(istream & is, Rational & r){
     int num = 0, den = 0;
-    string str;
     if (is >> num && is.ignore(256, '/') && is >> den)
         r = {num, den};
     return is;
