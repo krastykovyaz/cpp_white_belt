@@ -64,7 +64,12 @@ public:
 	  return false;
   }
   int  DeleteDate(const Date& date){
-		int count_event = (int)db.count(date);
+		int count_event = 0;
+		for (const auto &item : db[date]){
+			// for (const auto &i : item){
+				count_event ++;
+			// }
+		}	
 		db.erase(date);
 		return count_event;
 }
@@ -138,15 +143,48 @@ void ExForBrack(string &year, string &month, string &day){
 Date CheckDate(string & date){
 	// Date dat;
 	string year, month, day;
+	// stringstream yy(year);
 	int y = 0, m = 0 ,d = 0;
 	SaveDate(year, month, day, date);
 			// stringstream intValy(year);
 			// intValy >> y;
 	ExForBrack(year, month, day);
 	try {
+		// cout << year << " " << y << endl;
 		y = stoi(year);
 		m = stoi(month);
 		d = stoi(day);
+
+		if (year[0] == '-' || year[0] == '+')
+		{
+			if (year.length() == to_string(y).length() + 1)
+				;
+			else
+				cout << "Wrong date format: " << date << endl;
+		}
+		else if (year.length() != to_string(y).length()){
+			cout << "Wrong date format: " << date << endl;
+		}
+		if (month[0] == '+')
+		{
+			if (month.length() == to_string(m).length() + 1)
+				;
+			else
+				cout << "Wrong date format: " << date << endl;
+		}
+		else if (month.length() != to_string(m).length()){
+			cout << "Wrong date format: " << date << endl;
+		}	
+		if (day[0] == '+'){
+			if (day.length() == to_string(d).length() + 1)
+				;
+			else
+				cout << "Wrong date format: " << date << endl;
+		}
+		else if (day.length() != to_string(d).length())
+			cout << "Wrong date format: " << date << endl;
+		// yy >> y1;
+		// cout << year << " " << y << endl;
 	}catch(const invalid_argument& e){
 		cout << "Wrong date format: " << date << endl;
 		exit(1);
