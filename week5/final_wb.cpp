@@ -140,8 +140,9 @@ void ExForBrack(string &year, string &month, string &day){
 
 }
 
-Date CheckDate(string & date){
+bool CheckDate(string & date){
 	// Date dat;
+	bool flag = false;
 	string year, month, day;
 	// stringstream yy(year);
 	int y = 0, m = 0 ,d = 0;
@@ -187,24 +188,27 @@ Date CheckDate(string & date){
 		// cout << year << " " << y << endl;
 	}catch(const invalid_argument& e){
 		cout << "Wrong date format: " << date << endl;
-		exit(1);
+		flag = true;
 	}
-	try{
-		Date(y, m, d);
-	} catch (const int flag){
-		if (flag == 1){
-			cout << "Month value is invalid: " << m << endl;
+	if (flag == false){
+		try{
+			Date(y, m, d);
+		} catch (const int f){
+			if (f == 1){
+				cout << "Month value is invalid: " << m << endl;
+			}
+			else 
+				cout << "Day value is invalid: " << d << endl;
+			flag = true;
 		}
-		else 
-			cout << "Day value is invalid: " << d << endl;
-		exit(1);
 	}
-	return Date(y, m, d);
+	return flag;
 }
 
 int main() {
 	Database db;
 	string command, move, event;
+	int d1 = 0, m = 0, y = 0;
 	string date;
 	while (getline(cin, command)) {
 			// cout << "="<< command.length() << "=" << endl;
@@ -216,8 +220,21 @@ int main() {
 			// cout << date << endl;
 			ss >> event;
 			// cout << ">>" << event << "<<" << endl;
-			Date d = CheckDate(date);
-			if (command.length() > 0){
+			if (CheckDate(date) == false){
+				string year, month, day;
+				SaveDate(year, month, day, date);
+				y = stoi(year);
+				m = stoi(month);
+				d1 = stoi(day);
+			}
+			else
+			{
+				// continue;
+				exit(1);
+			}
+			Date d(y, m, d1);
+			if (command.length() > 0)
+			{
 				if (move == "Add"){
 				db.AddEvent(d, event);
 				}
